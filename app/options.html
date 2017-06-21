@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub Toolkit for Chrome</title>
+
+  <link rel="stylesheet" type="text/css" href="options.css">
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">
+      <h1>GitHub Toolkit for Chrome</h1>
+    </div>
+
+    <div class="banner">
+      <a target="_blank" href="https://github.com/jhickman/github-toolkit">
+        <img alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+        src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" />
+      </a>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="content">
+    <h2>Options</h2>
+    <div class="data-grid">
+      <div class="row">
+        <div class="cell-header">Issue Tracking:</div>
+        <div class="cell">
+          <select id="issueTracking">
+            <option value="">None</option>
+            <option value="jira">Jira</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell-header">PR File Collapse:</div>
+        <div class="cell">
+          <input type="checkbox" id="prFileCollapse" />
+        </div>
+      </div>
+    </div>
+
+    <div id="sectionIssueTracking" class="hidden">
+
+      <div id="jiraOptions" class="hidden">
+        <h2>Jira</h2>
+        <div class="data-grid">
+          <div class="row">
+            <div class="cell-header">Jira Base URL</div>
+            <div class="cell"><input type="text" id="jiraBaseUrl" placeholder="https://subdomain.atlassian.net/" /></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="button-bar">
+    <button id="save">Save</button>
+    <button id="clear">Clear storage</button>
+    <div id='notification'></div>
+  </div>
+
+  <script type="text/javascript" src="options.js"></script>
+
+</body>
+</html>

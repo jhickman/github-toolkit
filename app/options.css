@@ -1,0 +1,69 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  overflow: auto;
+  width: 600px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.header {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.header .banner {
+  flex: none;
+}
+.header .title {
+  flex: 1;
+  align-self: center;
+  text-align: center;
+}
+.content {
+  padding: 0px 10px 10px 10px;
+  overflow: auto;
+  flex: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.button-bar {
+  padding: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  border-top: 1px solid #c8c8c8;
+  align-items: center;
+}
+
+#notification {
+  flex: 1;
+}
+
+
+
+.data-grid {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5px;
+}
+.cell-header {
+  font-weight: bold;
+  width: 150px;
+}
+.cell {
+  flex: 1;
+}
+.cell select, .cell input[type='text'] {
+  width:100%;
+}
