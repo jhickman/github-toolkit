@@ -8,20 +8,24 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .header {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
 }
+
 .header .banner {
   flex: none;
 }
+
 .header .title {
   flex: 1;
   align-self: center;
   text-align: center;
 }
+
 .content {
   padding: 0px 10px 10px 10px;
   overflow: auto;
@@ -31,8 +35,6 @@ body {
 .hidden {
   display: none;
 }
-
-
 
 .button-bar {
   padding: 5px;
@@ -46,24 +48,26 @@ body {
   flex: 1;
 }
 
-
-
 .data-grid {
   display: flex;
   flex-direction: column;
 }
+
 .row {
   display: flex;
   flex-direction: row;
   padding-bottom: 5px;
 }
+
 .cell-header {
   font-weight: bold;
   width: 150px;
 }
+
 .cell {
   flex: 1;
 }
+
 .cell select, .cell input[type='text'] {
-  width:100%;
+  width: 100%;
 }

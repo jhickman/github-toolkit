@@ -1,5 +1,5 @@
 define(
-  [ "jquery" ],
+  ["jquery"],
   function($) {
     var App = {
 
@@ -7,13 +7,13 @@ define(
 
       run: function() {
         chrome.storage.sync.get({
-          issueTracking : "",
-          taskTracking : {
-            jira : {
-              baseUrl : ''
+          issueTracking: "",
+          taskTracking: {
+            jira: {
+              baseUrl: ''
             }
           },
-          prFileCollapse : false
+          prFileCollapse: false
         }, function(items) {
 
           if (items.issueTracking != "") {

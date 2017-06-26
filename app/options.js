@@ -3,13 +3,13 @@ var issueTrackingTypes = ["jira"];
 
 function loadOptions() {
   chrome.storage.sync.get({
-    issueTracking : '',
-    taskTracking : {
-      jira : {
-        baseUrl : ''
+    issueTracking: '',
+    taskTracking: {
+      jira: {
+        baseUrl: ''
       }
     },
-    prFileCollapse : false
+    prFileCollapse: false
   }, function(items) {
 
     // push store data into form elements
@@ -44,12 +44,12 @@ function changeIssueTracking() {
 function saveOptions() {
   chrome.storage.sync.set({
     issueTracking: document.getElementById("issueTracking").value,
-    taskTracking : {
-      jira : {
-        baseUrl : document.getElementById('jiraBaseUrl').value
+    taskTracking: {
+      jira: {
+        baseUrl: document.getElementById('jiraBaseUrl').value
       }
     },
-    prFileCollapse : document.getElementById('prFileCollapse').checked
+    prFileCollapse: document.getElementById('prFileCollapse').checked
   }, function() {
     var notificationElement = document.getElementById('notification');
     notificationElement.textContent = 'Options saved.';
