@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GitHub Toolkit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <link rel="stylesheet" type="text/css" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <h1 class='title'>GitHub Toolkit</h1>
+  <div id="path-area">
+    <div id="blocker"></div>
+    <input type="text" placeholder="File Regex..." tabindex="-1" class="form-control" id="path" />
+    <button class="tool-button" title="Collapse" id="collapse"><i class="fa fa-minus"></i></button>
+    <button class="tool-button" title="Expand" id="expand"><i class="fa fa-plus"></i></button>
+  </div>
+  <div id="tree"></div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

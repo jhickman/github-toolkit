@@ -1,6 +1,6 @@
 define(
-  ["jquery"],
-  function($) {
+  ["jquery", "app/general"],
+  function($, general) {
     var App = {
 
 
@@ -15,6 +15,9 @@ define(
           },
           prFileCollapse: false
         }, function(items) {
+
+          // general functionality that isn't toggled
+          general.initialize();
 
           if (items.issueTracking != "") {
             // initialize issue Tracking

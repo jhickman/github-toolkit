@@ -20,13 +20,22 @@
     "chrome_style": true
   },
 
-  "content_scripts": [
-    {
-      "matches": ["*://github.com/*"],
-      "js": ["lib/require.js", "lib/require-cs.js", "app/content.js"],
-      "run_at": "document_end"
-    }
-  ],
+  "content_scripts": [{
+    "matches": ["*://github.com/*"],
+    "js": ["lib/require.js", "lib/require-cs.js", "app/content.js"],
+    "run_at": "document_end"
+  }],
+
+  "background": {
+    "scripts": ["app/background.js"],
+    "persistent": false
+  },
+
+  "page_action": {
+    "default_icon": "images/icon128.png",
+    "default_title": "GitHub Toolkit",
+    "default_popup": "app/popup.html"
+  },
 
   "web_accessible_resources": [
     "lib/*",
@@ -36,6 +45,7 @@
   "permissions": [
     "activeTab",
     "storage",
+    "declarativeContent",
     "https://*.gravatar.com/",
     "https://*.atlassian.com/",
     "https://*.atlassian.net/",
