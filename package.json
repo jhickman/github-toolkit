@@ -1,0 +1,47 @@
+{
+  "name": "github-toolkit",
+  "version": "1.0.1",
+  "author": "Justin Hickman <justin@jhickman.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhickman/github-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhickman/github-toolkit/issues"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "karma start",
+    "test:watch": "karma start --no-single-run --auto-watch",
+    "version": "json -I -f assets/manifest.json -e \"this.version='`json -f package.json version`'\" && git add assets/manifest.json",
+    "package-all": "npm-run-all chrome-pack firefox-pack && cp out/chrome-github-toolkit-$npm_package_version.zip out/opera-github-toolkit-$npm_package_version.zip",
+    "release": "webstore upload --source out/chrome-github-toolkit-$npm_package_version.zip --auto-publish",
+    "chrome-manifest": "mkdirp dist && json -e \"delete this.applications;\" < assets/manifest.json > dist/manifest.json",
+    "chrome-build": "npm run chrome-manifest && cross-env NODE_ENV=production webpack --display-error-details",
+    "chrome-watch": "npm run chrome-manifest && webpack --watch",
+    "chrome-pack": "npm run chrome-build && mkdirp out && zip -r out/chrome-github-toolkit-$npm_package_version.zip dist",
+    "chrome-open": "npm run chrome-build && npm run chrome-launch --",
+    "chrome-launch": "./scripts/chrome-launch.js",
+    "firefox-manifest": "mkdirp dist && cp assets/manifest.json dist/manifest.json",
+    "firefox-build": "npm run firefox-manifest && cross-env NODE_ENV=production webpack --display-error-details",
+    "firefox-watch": "npm run firefox-manifest && webpack --watch",
+    "firefox-pack": "npm run firefox-build && mkdirp out && zip -rj out/firefox-github-toolkit-$npm_package_version.zip dist/",
+    "firefox-open": "npm run firefox-build && npm run firefox-launch --",
+    "firefox-launch": "web-ext run --source-dir dist --pref startup.homepage_welcome_url=https://github.com/jhickman/github-toolkit/blob/master/package.json",
+    "clean": "rm -r dist/ && rm -r out/"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "chrome-webstore-upload-cli": "^1.1.1",
+    "copy-webpack-plugin": "^4.1.0",
+    "cross-env": "^5.0.5",
+    "dot-json": "^1.0.3",
+    "eslint": "^4.8.0",
+    "json": "^9.0.6",
+    "npm-run-all": "^4.1.1",
+    "webpack": "^3.6.0"
+  }
+}

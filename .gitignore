@@ -1,0 +1,9 @@
+
+extension/**/*.js
+extension/**/*.map
+
+github-toolkit-*.tar.gz
+github-toolkit-*.tgz
+node_modules/*
+dist/*
+out/*

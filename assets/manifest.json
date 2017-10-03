@@ -1,47 +1,49 @@
 {
   "manifest_version": 2,
   "name": "GitHub Toolkit",
-  "version": "1.0.0",
-
+  "version": "1.0.1",
   "description": "A general toolkit for GitHub",
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png",
-    "256": "images/icon256.png",
-    "512": "images/icon512.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png",
+    "256": "icon256.png",
+    "512": "icon512.png"
   },
-
   "author": "Justin Hickman",
   "homepage_url": "https://github.com/jhickman/github-toolkit",
-
   "options_ui": {
-    "page": "app/options.html",
+    "page": "options.html",
     "chrome_style": true
   },
-
-  "content_scripts": [{
-    "matches": ["*://github.com/*"],
-    "js": ["lib/require.js", "lib/require-cs.js", "app/content.js"],
-    "run_at": "document_end"
-  }],
-
+  "content_scripts": [
+    {
+      "matches": [
+        "*://github.com/*"
+      ],
+      "js": [
+        "lib/require.js",
+        "lib/require-cs.js",
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
   "background": {
-    "scripts": ["app/background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   },
-
   "page_action": {
-    "default_icon": "images/icon128.png",
+    "default_icon": "icon128.png",
     "default_title": "GitHub Toolkit",
-    "default_popup": "app/popup.html"
+    "default_popup": "popup.html"
   },
-
   "web_accessible_resources": [
     "lib/*",
     "app/*"
   ],
-
   "permissions": [
     "activeTab",
     "storage",
