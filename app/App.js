@@ -1,5 +1,5 @@
 define(
-  ["backbone", "app/general"], //jquery", "app/general"],
+  ["backbone", "app/General"],
   function(Backbone, General) {
     var View = Backbone.View.extend({
       initialize: function() {},

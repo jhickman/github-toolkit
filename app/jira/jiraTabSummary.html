@@ -1,0 +1,54 @@
+<table class="jira-tooltip">
+  <thead>
+    <tr>
+      <th colspan=50>
+        <%= data.key %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Assignee</strong>
+      </td>
+      <td>
+        <%= data.fields.assignee.displayName %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Reporter</strong>
+      </td>
+      <td>
+        <%= data.fields.reporter.displayName %>
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">
+        <strong>Fix Versions</strong>
+      </td>
+      <td>
+        <% for (var i in data.fields.fixVersions) { %>
+          <span><%= data.fields.fixVersions[i].name %></span>
+          <% } %>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>Summary</strong></td>
+      <td>
+        <span><%= data.fields.summary %></span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=50>
+        <hr />
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan=50>
+        <%= data.fields.description.replace(/\r?\n/g, '<br />') %>
+      </td>
+    </tr>
+  </tbody>
+</table>

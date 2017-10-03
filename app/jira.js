@@ -1,6 +1,6 @@
 define(
-  ['backbone', 'text!app/jiraTab.html', 'text!app/jiraTabView.html'],
-  function(Backbone, JiraTabTemplate, JiraTabView) {
+  ['backbone', 'text!app/jira/jiraTab.html', 'text!app/jira/jiraTabView.html', 'text!app/jira/jiraTabSummary.html'],
+  function(Backbone, JiraTabTemplate, JiraTabView, JiraTabSummary) {
 
     var View = Backbone.View.extend({
 
@@ -69,11 +69,28 @@ define(
           )
         );
 
+        // let's go ahead and fetch the data asynchronously
+        this._fetchData(ticketNumber);
+
         //Add another tab for directly viewing the ticket information
         $('div.tabnav.tabnav-pr nav.tabnav-tabs').append(_.template(JiraTabTemplate)({
           ticketNumber: ticketNumber,
           tabUrl: prUrl + "#jira"
         }));
+
+        $('nav.tabnav-tabs a[class~="jira-tab"]').tooltip({
+          items: '[class~="jira-tab"]',
+          content: function() {
+            return _self._getSummaryContent();
+          }
+        });
+        /*
+        DEBUGGING
+        $('nav.tabnav-tabs a[class~="jira-tab"]').on('mouseout', function(event) {
+          event.stopImmediatePropagation();
+        });
+        */
+
 
         // add a place to add the view
         $('div.issues-listing').append(
@@ -122,7 +139,9 @@ define(
           dataType: "json",
           success: function(result) {
             _self.fetchData = result;
-            callback(result);
+            if (callback) {
+              callback(result);
+            }
           }
         });
       },
@@ -145,6 +164,17 @@ define(
           assigneeImage: assigneeImage,
           reporterImage: reporterImage
         }));
+      },
+
+      _getSummaryContent: function() {
+        var _self = this;
+        if (!this.fetchData) {
+          console.log("Ticket info not fetched");
+          return;
+        }
+        return _.template(JiraTabSummary)({
+          data: _self.fetchData
+        });
       }
     });
 
