@@ -42,9 +42,9 @@ define(
         var _self = this;
         var url = window.location.href;
         if (url.match(/github\.com\/(.*)\/(.*)\/pull\//) != null) {
-          setTimeout(function() {
-            _self.handlePrPage()
-          }, 200);
+          _self.handlePrPage()
+        } else if (url.match(/github\.com\/(.*)\/(.*)\/projects\//) != null) {
+          _self.handleProjectsPage();
         }
       },
 
@@ -111,6 +111,34 @@ define(
         });
       },
 
+      /*
+         for the projects page, let's create tooltips
+         for cards.
+       */
+      handleProjectsPage: function() {
+        var _self = this;
+        //
+        $('.project-columns-container').tooltip({
+          items: '.issue-card a[class~="d-block"]',
+          content: function(callback) {
+            var ticketNumber = this.text.match(/([A-Z]+-[0-9]+)/)[0];
+            if (!ticketNumber) {
+              // no ticket number.  no tooltip
+              return;
+            }
+
+            var cacheName = 'fetchData_' + ticketNumber;
+
+            if (_self[cacheName]) {
+              callback(_self._getSummaryContent(cacheName));
+            } else {
+              _self._fetchData(ticketNumber, function(data) {
+                callback(_self._getSummaryContent(cacheName));
+              }, 'fetchData_' + ticketNumber);
+            }
+          }
+        });
+      },
 
       displayJiraTab: function(ticketNumber) {
         var _self = this;
@@ -132,13 +160,16 @@ define(
         });
       },
 
-      _fetchData: function(ticketNumber, callback) {
+      _fetchData: function(ticketNumber, callback, cacheName) {
         var _self = this;
         $.ajax({
           url: _self.options.baseUrl + "/rest/api/latest/issue/" + ticketNumber,
           dataType: "json",
           success: function(result) {
-            _self.fetchData = result;
+            if (!cacheName) {
+              cacheName = 'fetchData';
+            }
+            _self[cacheName] = result;
             if (callback) {
               callback(result);
             }
@@ -166,14 +197,18 @@ define(
         }));
       },
 
-      _getSummaryContent: function() {
+      _getSummaryContent: function(cacheName) {
         var _self = this;
-        if (!this.fetchData) {
+        if (!cacheName) {
+          cacheName = 'fetchData';
+        }
+
+        if (!this[cacheName]) {
           console.log("Ticket info not fetched");
           return;
         }
         return _.template(JiraTabSummary)({
-          data: _self.fetchData
+          data: _self[cacheName]
         });
       }
     });
