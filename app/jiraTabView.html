@@ -1,0 +1,94 @@
+<div class="discussion-sidebar">
+  <div class="js-socket-channel js-updatable-content">
+    <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item position-relative">
+      <div class="select-menu js-menu-container js-select-menu js-review-requests-menu" style="margin-bottom:10px;">
+        <strong>Assignee</strong>
+      </div>
+      <span class="css-truncate">
+        <p>
+          <img alt="@<%= result.fields.assignee.name %>" class="avatar" height="20" src="<%= result.fields.assignee.avatarUrls["24x24"] %>" width="20">
+          <span style="margin-left:10px;" class="assignee css-truncate-target"><%= result.fields.assignee.displayName %></span>
+        </p>
+      </span>
+      <div class="select-menu js-menu-container js-select-menu js-review-requests-menu" style="margin-bottom:10px;">
+        <strong>Reporter</strong>
+      </div>
+      <span class="css-truncate">
+        <p>
+          <img alt="@<%= result.fields.reporter.name %>" class="avatar" height="20" src="<%= result.fields.reporter.avatarUrls["24x24"] %>" width="20">
+          <span style="margin-left:10px;" class="assignee css-truncate-target"><%= result.fields.reporter.displayName %></span>
+        </p>
+      </span>
+      <div class="select-menu js-menu-container js-select-menu js-review-requests-menu" style="margin-bottom:10px;">
+        <strong>Fix Versions</strong>
+      </div>
+      <span class="css-truncate">
+        <% for(var i in result.fields.fixVersions) { %>
+          <span style="margin-left:10px;" class="css-truncate-target"><%= result.fields.fixVersions[i].name %></span>
+        <% } %>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="discussion-timeline comment previewable-edit js-comment js-task-list-container timeline-comment js-reorderable-task-lists reorderable-task-lists" style="margin-bottom: 30px;">
+</div>
+
+
+<div class="discussion-timeline comment previewable-edit js-comment js-task-list-container timeline-comment js-reorderable-task-lists reorderable-task-lists" style="margin-bottom: 30px;">
+  <div class="timeline-comment-header">
+    <h3 class="timeline-comment-header-text f5 text-normal">
+      <strong>Summary: </strong><%= result.fields.summary %>
+    </h3>
+  </div>
+</div>
+
+
+<div class="discussion-timeline comment previewable-edit js-comment js-task-list-container timeline-comment js-reorderable-task-lists reorderable-task-lists" style="margin-bottom: 30px;">
+  <div class="timeline-comment-header">
+    <h3 class="timeline-comment-header-text f5 text-normal">
+      Description
+    </h3>
+  </div>
+  <div class="edit-comment-hide">
+    <div class="comment-body">
+      <%= result.fields.description.replace(/\r?\n/g, '<br />') %>
+    </div>
+  </div>
+</div>
+
+
+<% for (i in result.fields.comment.comments) { var comment = result.fields.comment.comments[i]; %>
+  <div class="discussion-timeline pull-discussion-timeline js-quote-selection-container ">
+    <div class="js-discussion js-socket-channel">
+      <div class="timeline-comment-wrapper js-comment-container">
+        <a href="#"><img alt="<%= comment.author.displayName %>" class="timeline-comment-avatar" height="48" src="<%= comment.author.avatarUrls['48x48'] %>" width="48"></a>
+        <div class="comment previewable-edit timeline-comment js-comment js-task-list-container">
+          <div class="timeline-comment-header ">
+            <div class="timeline-comment-header-text">
+              <strong>
+                <a href="#" class="author"><%= comment.author.displayName %></a>
+              </strong>
+              added a comment -
+              <a href="#" class="timestamp">
+                <time datetime="<%= comment.created %>" is="relative-time" title="<%= comment.created %>">
+                  <%= comment.created %>
+                </time>
+              </a>
+            </div>
+          </div>
+          <div class="edit-comment-hide">
+            <table class="d-block">
+              <tbody class="d-block">
+                <tr class="d-block">
+                  <td class="d-block comment-body markdown-body  js-comment-body">
+                    <p><%= comment.body %></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% } %>

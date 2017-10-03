@@ -1,8 +1,9 @@
 // general functionality that isn't toggled via configuration
 define(
-  ['jquery'],
-  function($) {
-    var General = {
+  ['backbone'],
+  function(Backbone) {
+    var View = Backbone.View.extend({
+
       /**
        *  Initializes the General functionality
        */
@@ -31,6 +32,7 @@ define(
           });
         });
       },
+
 
       /**
        * Gets github information out of the page
@@ -115,9 +117,7 @@ define(
         var diffViewId = this.pullRequestNumber || this.commitHash;
         return this.localStoragePrefix + '|' + this.repositoryAuthor + '|' + this.repositoryName + '|' + diffViewId + '|' + diffId;
       }
-
-    };
-
-    return General;
+    });
+    return View;
   }
 );

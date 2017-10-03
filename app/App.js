@@ -1,11 +1,10 @@
 define(
-  ["jquery", "app/general"],
-  function($, general) {
-    var App = {
+  ["backbone", "app/general"], //jquery", "app/general"],
+  function(Backbone, General) {
+    var View = Backbone.View.extend({
+      initialize: function() {},
 
-
-
-      run: function() {
+      render: function() {
         chrome.storage.sync.get({
           issueTracking: "",
           taskTracking: {
@@ -17,21 +16,23 @@ define(
         }, function(items) {
 
           // general functionality that isn't toggled
-          general.initialize();
+          new General().render();
 
           if (items.issueTracking != "") {
             // initialize issue Tracking
             require(
               ["app/" + items.issueTracking],
-              function(issueModule) {
-                issueModule.initialize(items.taskTracking[items.issueTracking]);
+              function(IssueModule) {
+                var module = new IssueModule(items.taskTracking[items.issueTracking]);
+                module.render();
               }
             );
           }
         });
+        return this;
       }
+    });
 
-    };
-    return App;
+    return View;
   }
 );

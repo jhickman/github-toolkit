@@ -11,6 +11,7 @@ chrome.tabs.getSelected(null, function(tab) {
   // check to see if we're in a diff view
   if (tab.url.match(/pull\/[0-9]+\/files/)) {
     document.getElementById('blocker').classList.add('enabled');
+    document.getElementById('focusholder').tabIndex = '-1';
     document.getElementById('path').tabIndex = '0';
     document.getElementById('path').focus();
   }

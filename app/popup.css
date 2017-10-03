@@ -21,6 +21,7 @@ body {
 #path-area {
   display: flex;
   align-content: space-around;
+  position: relative;
 }
 
 .form-control {
