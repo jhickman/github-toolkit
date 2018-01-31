@@ -1,6 +1,6 @@
 define(
-  ["backbone", "app/General"],
-  function(Backbone, General) {
+  ["backbone", "app/model/GitHub", "app/General"],
+  function(Backbone, GitHub, General) {
     var View = Backbone.View.extend({
       initialize: function() {},
 

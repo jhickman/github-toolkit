@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: chrome.extension.getURL("/"),
+  baseUrl: chrome.runtime.getURL("/"),
   paths: {
     jquery: 'lib/jquery-3.2.1.min',
     jqueryUi: 'lib/jquery-ui-1.12.1/jquery-ui.min',
@@ -18,19 +18,23 @@ require.config({
   }
 });
 
+// create namespace used for globals
+window.com = window.com || {};
+window.com.jhickman = window.com.jhickman || {};
+
 function loadCss(url) {
-    var link = document.createElement("link");
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.href = url;
-    document.getElementsByTagName("head")[0].appendChild(link);
+  var link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = url;
+  document.getElementsByTagName("head")[0].appendChild(link);
 }
 
 require(
   ["app/App"],
   function(App) {
-    loadCss(chrome.extension.getURL("/lib/jquery-ui-1.12.1/jquery-ui.min.css"));
-    loadCss(chrome.extension.getURL("/app/app.css"));
+    loadCss(chrome.runtime.getURL("/lib/jquery-ui-1.12.1/jquery-ui.min.css"));
+    loadCss(chrome.runtime.getURL("/app/app.css"));
     new App().render();
   }
 );

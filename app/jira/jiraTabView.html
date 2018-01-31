@@ -2,6 +2,12 @@
   <div class="js-socket-channel js-updatable-content">
     <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item position-relative">
       <div class="select-menu js-menu-container js-select-menu js-review-requests-menu" style="margin-bottom:10px;">
+        <strong>Issue Type</strong>
+      </div>
+      <span class="css-truncate">
+        <p><%= result.fields.issuetype.name %></p>
+      </span>
+      <div class="select-menu js-menu-container js-select-menu js-review-requests-menu" style="margin-bottom:10px;">
         <strong>Assignee</strong>
       </div>
       <span class="css-truncate">

@@ -1,3 +1,6 @@
+### v1.0.2
+* Added back the 200ms delay in pull request handling due to race condition
+* Added a "ignore whitespace" button in the changes tab
 
 ### v1.0.1
 * Fixed issues with Jira tab not working right

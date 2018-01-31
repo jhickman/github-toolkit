@@ -42,7 +42,9 @@ define(
         var _self = this;
         var url = window.location.href;
         if (url.match(/github\.com\/(.*)\/(.*)\/pull\//) != null) {
-          _self.handlePrPage()
+          setTimeout(function() {
+            _self.handlePrPage()
+          }, 200);
         } else if (url.match(/github\.com\/(.*)\/(.*)\/projects\//) != null) {
           _self.handleProjectsPage();
         }

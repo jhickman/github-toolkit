@@ -10,6 +10,8 @@ define(
       initialize: function() {
         var _self = this;
 
+        // all of the below needs work
+
         this.localStoragePrefix = 'ghtk';
         this.useLocalStorage = true;
         this.defaultDuration = 200;

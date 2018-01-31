@@ -17,3 +17,9 @@ chrome.runtime.onInstalled.addListener(function() {
     }]);
   });
 });
+
+chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
+  chrome.tabs.sendMessage(details.tabId, {
+    url: details.url
+  });
+});
