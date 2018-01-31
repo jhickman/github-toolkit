@@ -4,7 +4,7 @@ document.getElementById('path').blur();
 
 chrome.tabs.getSelected(null, function(tab) {
   port = chrome.tabs.connect(tab.id, {
-    name: 'pullrequest'
+    name: 'pullrequest',
   });
 
 
@@ -15,21 +15,23 @@ chrome.tabs.getSelected(null, function(tab) {
     document.getElementById('path').tabIndex = '0';
     document.getElementById('path').focus();
   }
-
 });
 
-
+/**
+ */
 function collapse() {
   var path = document.getElementById('path').value;
   port.postMessage({
-    collapse: path
+    collapse: path,
   });
 }
 
+/**
+ */
 function expand() {
   var path = document.getElementById('path').value;
   port.postMessage({
-    expand: path
+    expand: path,
   });
 }
 

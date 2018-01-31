@@ -1,36 +1,36 @@
 define(
-  ["backbone", "app/model/GitHub", "app/General"],
+  ['backbone', 'app/model/GitHub', 'app/General'],
   function(Backbone, GitHub, General) {
     var View = Backbone.View.extend({
       initialize: function() {},
 
       render: function() {
         chrome.storage.sync.get({
-          issueTracking: "",
+          issueTracking: '',
           taskTracking: {
             jira: {
-              baseUrl: ''
-            }
+              baseUrl: '',
+            },
           },
-          prFileCollapse: false
+          prFileCollapse: false,
         }, function(items) {
-
           // general functionality that isn't toggled
           new General().render();
 
-          if (items.issueTracking != "") {
+          if (items.issueTracking != '') {
             // initialize issue Tracking
             require(
-              ["app/" + items.issueTracking],
+              ['app/' + items.issueTracking],
               function(IssueModule) {
-                var module = new IssueModule(items.taskTracking[items.issueTracking]);
+                var module = new IssueModule(items.taskTracking[
+                  items.issueTracking]);
                 module.render();
               }
             );
           }
         });
         return this;
-      }
+      },
     });
 
     return View;

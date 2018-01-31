@@ -8,18 +8,18 @@ chrome.runtime.onInstalled.addListener(function() {
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
           pageUrl: {
-            urlContains: 'github.com'
+            urlContains: 'github.com',
           },
-        })
+        }),
       ],
       // And shows the extension's page action.
-      actions: [new chrome.declarativeContent.ShowPageAction()]
+      actions: [new chrome.declarativeContent.ShowPageAction()],
     }]);
   });
 });
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
   chrome.tabs.sendMessage(details.tabId, {
-    url: details.url
+    url: details.url,
   });
 });

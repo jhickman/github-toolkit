@@ -19,8 +19,6 @@ define(
 
         // add listener for extension button menu (popup)
         chrome.runtime.onConnect.addListener(function(adapter) {
-          console.assert(adapter.name == "pullrequest");
-
           adapter.onMessage.addListener(function(msg) {
             if (msg.collapse !== undefined) {
               _self.toggleDiffs(msg.collapse, 'collapse');
@@ -36,7 +34,7 @@ define(
       },
 
 
-      /**
+      /*
        * Gets github information out of the page
        */
       collectUniquePageInfo: function() {
@@ -46,7 +44,7 @@ define(
         this.commitHash = $('.sha.user-select-contain').text();
       },
 
-      /**
+      /*
        *  Toggles an individual diff for provided id
        */
       toggleDiff: function(id, duration, display) {
@@ -56,7 +54,8 @@ define(
           if (!this.useLocalStorage) {
             display = 'toggle';
           } else {
-            display = (localStorage.getItem(this.getUniqueStorageId(id)) === 'collapse') ? 'expand' : 'collapse';
+            display = (localStorage.getItem(this.getUniqueStorageId(id)) ===
+              'collapse') ? 'expand' : 'collapse';
           }
         }
 
@@ -69,16 +68,19 @@ define(
               return true;
             case 'expand':
               $data.slideDown(duration);
-              return this.useLocalStorage ? localStorage.removeItem(this.getUniqueStorageId(id)) : true;
+              return this.useLocalStorage ? localStorage.removeItem(
+                this.getUniqueStorageId(id)) : true;
             default:
               $data.slideUp(duration);
-              return this.useLocalStorage ? localStorage.setItem(this.getUniqueStorageId(id), display) : true;
+              return this.useLocalStorage ?
+                localStorage.setItem(this.getUniqueStorageId(id),
+                  display) : true;
           }
         }
         return false;
       },
 
-      /**
+      /*
        * toggles all diffs for the provided path
        */
       toggleDiffs: function(path, display) {
@@ -90,7 +92,7 @@ define(
         });
       },
 
-      /**
+      /*
        * Finds all elements holding diffs for given path
        */
       getDiffElements: function(path) {
@@ -99,7 +101,7 @@ define(
         });
       },
 
-      /**
+      /*
        * Get IDs for path
        */
       getIds: function(path) {
@@ -112,13 +114,14 @@ define(
         return $ids;
       },
 
-      /**
+      /*
        * creates a unique ID for the provided ID intended for local storage ID
        */
       getUniqueStorageId: function(diffId) {
         var diffViewId = this.pullRequestNumber || this.commitHash;
-        return this.localStoragePrefix + '|' + this.repositoryAuthor + '|' + this.repositoryName + '|' + diffViewId + '|' + diffId;
-      }
+        return this.localStoragePrefix + '|' + this.repositoryAuthor +
+          '|' + this.repositoryName + '|' + diffViewId + '|' + diffId;
+      },
     });
     return View;
   }
