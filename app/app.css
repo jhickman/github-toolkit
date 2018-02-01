@@ -1,4 +1,3 @@
-
 /* ui-tooltip ui-corner-all ui-widget-shadow ui-widget ui-widget-content*/
 
 .ui-tooltip {
@@ -11,7 +10,55 @@
   margin: 15px;
 }
 
-
 .jira-tooltip td {
   padding: 0 10px 0 0;
+}
+
+.vis-item.vis-box.ghtk_added_to_project {
+  background-color: #84e885;
+}
+
+.vis-item.vis-box.ghtk_moved_columns_in_project {}
+
+.vis-item.vis-box.ghtk_commented {}
+
+.vis-item.vis-box.ghtk_review_dismissed {}
+
+.vis-item.vis-box.ghtk_mentioned {}
+
+.vis-item.vis-box.ghtk_unlabeled, .vis-item.vis-box.ghtk_labeled {
+  background-color: #e6ebf1;
+  color: #586069;
+}
+
+.vis-item.vis-box.ghtk_reviewed_changes_requested {
+  background-color: #cb2431;
+  color: white;
+}
+
+.vis-item.vis-box.ghtk_reviewed_approved {
+  background-color: #84e885;
+  color: white;
+}
+
+.vis-item.vis-box.ghtk_review_dismissed {
+  background-color: #e6ebf1;
+  color: #586069;
+}
+
+.vis-item.vis-box.ghtk_committed {}
+
+.vis-item.vis-box.ghtk_head_ref_deleted {
+  background-color: #707070;
+  color: white;
+}
+
+.vis-item.vis-box.ghtk_merged {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.vis-item.vis-box.ghtk_closed {
+  background-color: #ba3f3f;
+  color: white;
 }

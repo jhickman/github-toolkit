@@ -5,6 +5,7 @@ require.config({
     jqueryUi: 'lib/jquery-ui-1.12.1/jquery-ui.min',
     backbone: 'lib/backbone-min',
     underscore: 'lib/underscore-min',
+    vis: 'lib/vis.min',
     text: 'lib/text',
   },
   shim: {
@@ -40,6 +41,7 @@ require(
   function(App) {
     loadCss(chrome.runtime.getURL('/lib/jquery-ui-1.12.1/jquery-ui.min.css'));
     loadCss(chrome.runtime.getURL('/app/app.css'));
+    loadCss(chrome.runtime.getURL('/lib/vis.min.css'));
     new App().render();
   }
 );

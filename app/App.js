@@ -1,11 +1,13 @@
 define(
-  ['backbone', 'app/model/GitHub', 'app/General'],
-  function(Backbone, GitHub, General) {
+  ['backbone', 'app/model/GitHub', 'app/General', 'app/timeline/Timeline'],
+  function(Backbone, GitHubModel, General, Timeline) {
     var View = Backbone.View.extend({
       initialize: function() {},
 
       render: function() {
+        var _self = this;
         chrome.storage.sync.get({
+          authToken: '',
           issueTracking: '',
           taskTracking: {
             jira: {
@@ -14,8 +16,15 @@ define(
           },
           prFileCollapse: false,
         }, function(items) {
+          _self.github = new GitHubModel({
+            authToken: items.authToken,
+          });
+
           // general functionality that isn't toggled
           new General().render();
+          new Timeline({
+            github: _self.github,
+          }).render();
 
           if (items.issueTracking != '') {
             // initialize issue Tracking

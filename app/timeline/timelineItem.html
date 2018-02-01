@@ -1,0 +1,16 @@
+<div>
+  <b><%= item.get('title') %></b><br/>
+  <%= item.get('actor').login %>
+  <% if (item.get('event') === 'reviewed') {%>
+    <br/><%= item.get('state') %>
+  <% } %>
+  <% if (item.get('event') === 'review_dismissed') {%>
+    <br/>
+  <% } %>
+  <% if (item.get('event') === 'labeled' || item.get('event') === 'unlabeled') {%>
+    <br />
+    <span style='background-color:#<%= item.get("label").color %>;color:white;'>
+      <%= item.get('label').name %>
+    </span>
+  <% } %>
+</div>

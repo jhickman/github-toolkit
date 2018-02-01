@@ -119,10 +119,10 @@ define(
         $('a[data-tab="jira"]').on('click', function() {
           // if the selected tab is the conversation tab,
           // then go ahead and display
-          if ($('nav.tabnav-tabs a.selected')[0].href.endsWith(
-              prNumber)) {
+//          if ($('nav.tabnav-tabs a.selected')[0].href.endsWith(
+//              prNumber)) {
             _self.displayJiraTab(ticketNumber);
-          }
+//          }
         });
       },
 

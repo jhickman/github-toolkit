@@ -4,6 +4,7 @@ var issueTrackingTypes = ['jira'];
  */
 function loadOptions() {
   chrome.storage.sync.get({
+    authToken: '',
     issueTracking: '',
     taskTracking: {
       jira: {
@@ -13,6 +14,7 @@ function loadOptions() {
     prFileCollapse: false,
   }, function(items) {
     // push store data into form elements
+    document.getElementById('authToken').value = items.authToken;
     document.getElementById('issueTracking').value = items.issueTracking;
     document.getElementById('prFileCollapse').checked = items.prFileCollapse;
     document.getElementById('jiraBaseUrl').value =
@@ -52,6 +54,7 @@ function changeIssueTracking() {
  */
 function saveOptions() {
   chrome.storage.sync.set({
+    authToken: document.getElementById('authToken').value,
     issueTracking: document.getElementById('issueTracking').value,
     taskTracking: {
       jira: {
@@ -73,7 +76,7 @@ function saveOptions() {
  */
 function clearOptions() {
   chrome.storage.sync.remove(
-    ['issueTracking', 'taskTracking', 'prFileCollapse']);
+    ['authToken', 'issueTracking', 'taskTracking', 'prFileCollapse']);
   loadOptions();
   saveOptions();
 }
