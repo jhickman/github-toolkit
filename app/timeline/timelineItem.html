@@ -5,8 +5,11 @@
     <br/><%= item.get('state') %>
   <% } %>
   <% if (item.get('event') === 'review_dismissed') {%>
-    <br/>
+    <br/><%= item.collection.get(item.get('dismissed_review').review_id).get('user').login %>
   <% } %>
+  <% if (item.get('event') === 'review_requested') {%>
+    <br/><%= item.get('requested_reviewer').login %>
+  <% } %>  
   <% if (item.get('event') === 'labeled' || item.get('event') === 'unlabeled') {%>
     <br />
     <span style='background-color:#<%= item.get("label").color %>;color:white;'>

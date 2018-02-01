@@ -73,8 +73,10 @@ define(
           ticketNumber;
         var prUrl = window.location.href.replace(/(\/pull\/[0-9]*).*/,
           '$1');
+        /*
         var prNumber = $('meta[property=\'og:url\']')[0].content.replace(
           /^.*\/pull\/([0-9]+.*)/, '$1');
+          */
 
         // Replace title with clickable link to jira ticket
         $('h1 > span.js-issue-title').html(
@@ -117,12 +119,7 @@ define(
 
         // Tab click handle
         $('a[data-tab="jira"]').on('click', function() {
-          // if the selected tab is the conversation tab,
-          // then go ahead and display
-//          if ($('nav.tabnav-tabs a.selected')[0].href.endsWith(
-//              prNumber)) {
-            _self.displayJiraTab(ticketNumber);
-//          }
+          _self.displayJiraTab(ticketNumber);
         });
       },
 
@@ -135,6 +132,9 @@ define(
         //
         $('.project-columns-container').tooltip({
           items: '.issue-card a[class~="d-block"]',
+          show: {
+            delay: 1000,
+          },
           content: function(callback) {
             var ticketNumber = this.text.match(/([A-Z]+-[0-9]+)/)[
               0];

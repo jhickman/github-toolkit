@@ -83,7 +83,6 @@ define(
           var items = [];
           var counter = 0;
           events.forEach(function(item) {
-            var group = '';
             switch (item.get('event')) {
               // ones to skip
               case 'mentioned':
@@ -114,7 +113,9 @@ define(
                   'created_at': item.get('author').date,
                 });
                 break;
-
+              case 'review_requested':
+                item.set('title', 'Review Requested');
+                break;
               case 'added_to_project':
                 item.set('title', 'Added');
                 break;
@@ -155,6 +156,7 @@ define(
               // eslint-disable-next-line no-console
               console.warn('error in template:', e, item);
             }
+
             var newItem = {
               id: counter++,
               content: content,
@@ -163,13 +165,6 @@ define(
             };
             if (item.get('event') === 'reviewed') {
               newItem.className += '_' + item.get('state');
-            }
-            if (item.get('event') === 'labeled' ||
-              item.get('event') === 'unlabeled') {
-              //                newItem.
-            }
-            if (group) {
-              newItem.group = group;
             }
             items.push(newItem);
           });

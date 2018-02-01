@@ -1,3 +1,10 @@
+### v1.0.4
+* Fix issue with tooltips staying open
+* fixed missing 'review_requested' in timeline
+
+### v1.0.3
+* Added timeline tab to pull requests
+
 ### v1.0.2
 * Added back the 200ms delay in pull request handling due to race condition
 * Added a "ignore whitespace" button in the changes tab
